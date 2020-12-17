@@ -8,7 +8,6 @@ from django.contrib.auth.models import User
 class UserInfo(models.Model):
     # userinfo -one to one- user
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
     facebook_id = models.URLField(blank=True)
     # profile_pics -directory- te save hobe
     profile_pic = models.ImageField(upload_to='profile_pics', blank=True)
@@ -42,7 +41,7 @@ class Account(models.Model):
         Branch, on_delete=models.CASCADE)
     password = models.CharField(max_length=15)
     currentBalance = models.IntegerField()
-    lastTransaction = models.DateTimeField()
+    # lastTransaction = models.DateTimeField()
 
     def __str__(self):
         return self.account_name+" and Account id: "+str(self.id)
