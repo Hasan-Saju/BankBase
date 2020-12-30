@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from bank.forms import UserForm, UserInfoForm
-from bank.models import UserInfo
+from bank.forms import UserForm, UserInfoForm,CreateNewAccount
+from bank.models import UserInfo,Account
 from django.contrib.auth.models import User
 # module for authentication
 from django.contrib.auth import authenticate, login, logout
@@ -84,3 +84,17 @@ def register(request):
     dict = {'user_form': user_form,
             'user_info_form': user_info_form, 'registered': registered}
     return render(request, 'register.html', context=dict)
+
+def new_account(request):
+    new_form=CreateNewAccount()
+    
+    if request.method=='POST':
+        new_form=CreateNewAccount(request.POST)
+
+        if new_form.is_valid():
+            new_form.save(commit=True)
+            return index(request)
+    
+    dict={}
+    return render(request,'new_account.html',context=dict)
+

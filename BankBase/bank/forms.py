@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from bank.models import UserInfo
+from bank.models import UserInfo,Account
 
 
 class UserForm(forms.ModelForm):
@@ -16,3 +16,10 @@ class UserInfoForm(forms.ModelForm):
     class Meta():
         model = UserInfo
         fields = ('facebook_id', 'profile_pic')
+
+
+class CreateNewAccount(forms.ModelForm):
+    class Meta:
+        model=Account
+        exclude=('id','currentBalance',)
+

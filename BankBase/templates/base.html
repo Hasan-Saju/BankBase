@@ -32,6 +32,12 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'bank:logout' %}">Logout</a>
             </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'bank:new_account' %}">Create New Account</a>
+            </li>
+
+            
             {% else %}
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'bank:register' %}">Register</a>
