@@ -13,6 +13,8 @@ urlpatterns = [
     path('user_login/', views.user_login, name='user_login'),
     path('logout/', views.user_logout, name='logout'),
     path('new_account/', views.new_account, name='new_account'),
+    path('transaction/', views.transaction_list.as_view(), name='transaction'),
+    path('loan/', views.loan_list.as_view(), name='loan'),
 ]
 
 # image processing

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block body_block %}
+<h3>Branch Transaction</h3>
+<br><br>
+
+        <table class="table table-bordered">
+        <tr>
+        <th>Source Account </th>    
+        <th>Destination Account </th>    
+        <th>Amount</th> 
+        <th>Timestamp</th> 
+        <tr>
+    
+    	{% for transaction in transaction_list %}
+        <tr> 
+        <td>{{transaction.sourceAccount}} </td>
+        <td> {{transaction.destAccount}} </td>
+        <td> {{transaction.amount}} </td>
+        <td> {{transaction.timestamp}}</td>  
+        </tr>
+        {% endfor %}
+
+        </table>
+
+{% endblock %}

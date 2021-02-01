@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from bank.forms import UserForm, UserInfoForm,CreateNewAccount
-from bank.models import UserInfo,Account
+from bank.models import UserInfo,Account,Transaction,Loan
 from django.contrib.auth.models import User
 # module for authentication
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+
+from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
 # Create your views here.
@@ -98,3 +100,14 @@ def new_account(request):
     dict={}
     return render(request,'new_account.html',context=dict)
 
+
+
+class transaction_list(ListView):
+    context_object_name = 'transaction_list'
+    model = Transaction
+    template_name = 'transaction.html'
+
+class loan_list(ListView):
+    context_object_name = 'loan_list'
+    model = Loan
+    template_name = 'loan.html'

@@ -65,7 +65,10 @@ class Transaction(models.Model):
     timestamp = models.DateTimeField()
 
     def __str__(self):
-        return self.sourceAccount + " sends "+self.amount+" taka to "+self.destAccount
+        return str(self.sourceAccount) + " sends "+ str(self.amount)+" taka to "+str(self.destAccount)
+
+    #def get_absolute_url(self):
+     #   return reverse("bank:transaction_details", kwargs={'pk': self.pk})
 
 
 class Customer(models.Model):

@@ -6,6 +6,9 @@
 <p>Your Email: {{ user_basic_info.email }} </p>
 <p><a href="{{ user_more_info.facebook_id }}">Facebook Profile</a> </p>
 <img src="/media/{{ user_more_info.profile_pic }}" alt="User Photo" width="200px">
+
+<a href={% url 'bank:transaction' %}> Transaction </a>
+
 {% else %}
 <div class="alert alert-primary">
     You are not logged in
