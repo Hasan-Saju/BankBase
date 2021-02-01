@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block body_block %}
+<h3>Creating New Loan</h3>
+
+<form action="{% url 'bank:loan_form' %}" method="POST">
+    <label for="accountNo">Account Number:</label>
+    <input type="Number" name="accountNo" placeholder="Enter Account Number.." required class="form-control">
+    
+    <label for="loan_amount">Loan Amount:</label>
+    <input type="Number" name="loan_amount" required class="form-control">
+    
+    <label for="interestRate">Interest Rate:</label>
+    <input type="Number" name="interestRate"  required class="form-control">
+
+    <label for="loanPeriod">Loan Period:</label>
+    <input type="date" name="loanPeriod"  required class="form-control">
+    
+    <label for="remainingTerms">Remaining Terms:</label>
+    <input type="Number" name="remainingTerms"  required class="form-control">
+    
+    
+    {% csrf_token %}
+    <br>
+    <input type="submit" name="submit" value="Create New Loan">
+
+</form>
+
+{% endblock %}

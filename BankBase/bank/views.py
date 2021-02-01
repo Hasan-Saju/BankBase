@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from bank.forms import UserForm, UserInfoForm,CreateNewAccount
+from bank.forms import UserForm, UserInfoForm,CreateNewAccount,LoanForm, TransactionForm
 from bank.models import UserInfo,Account,Transaction,Loan
 from django.contrib.auth.models import User
 # module for authentication
@@ -111,3 +111,30 @@ class loan_list(ListView):
     context_object_name = 'loan_list'
     model = Loan
     template_name = 'loan.html'
+
+
+def loan_form(request):
+    new_form=LoanForm()
+
+    if request.method=='POST':
+        new_form=LoanForm(request.POST)
+
+        if new_form.is_valid():
+            new_form.save(commit=True)
+            return HttpResponse("Successfully created New Loan")
+
+    dict={}
+    return render(request,'loan_form.html',context=dict)
+
+def transaction_form(request):
+    new_form=TransactionForm()
+
+    if request.method=='POST':
+        new_form=TransactionForm(request.POST)
+
+        if new_form.is_valid():
+            new_form.save(commit=True)
+            return HttpResponse("Successfully created New Transaction")
+
+    dict={}
+    return render(request,'transaction_form.html',context=dict)

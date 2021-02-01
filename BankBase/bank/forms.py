@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from bank.models import UserInfo,Account
+from bank.models import UserInfo,Account,Loan,Transaction
 
 
 class UserForm(forms.ModelForm):
@@ -22,4 +22,14 @@ class CreateNewAccount(forms.ModelForm):
     class Meta:
         model=Account
         exclude=('id','currentBalance',)
+
+class LoanForm(forms.ModelForm):
+    class Meta:
+        model=Loan
+        fields='__all__'
+
+class TransactionForm(forms.ModelForm):
+    class Meta:
+        model=Transaction
+        fields='__all__'
 
