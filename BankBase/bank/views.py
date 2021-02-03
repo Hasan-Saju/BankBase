@@ -142,9 +142,18 @@ def transaction_form(request):
 
 def bank_statement(request,account_id):
     account_info_send=Transaction.objects.filter(sourceAccount=account_id)
-    account_info_receive=Transaction.objects.filter(destAccount=account_id)
+    totalSend=0
+    totalSend=sum(account_info_send.values_list('amount',flat=True))
 
-    diction={'send':account_info_send,'receive':account_info_receive}
+    account_info_receive=Transaction.objects.filter(destAccount=account_id)
+    totalReceive=0
+    totalReceive=sum(account_info_receive.values_list('amount',flat=True))
+
+    diction={'send':account_info_send,'totalSend':totalSend,'receive':account_info_receive,'totalReceive':totalReceive}
     return render(request,'statement.html',context=diction)
+
+def loan_scheme(request):
+    dict={}
+    return render(request,'loan_scheme.html',context=dict)
     
 

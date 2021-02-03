@@ -15,6 +15,7 @@ urlpatterns = [
     path('new_account/', views.new_account, name='new_account'),
     path('transaction/', views.transaction_list.as_view(), name='transaction'),
     path('transaction_form/', views.transaction_form, name='transaction_form'),
+     path('loan_scheme/', views.loan_scheme, name='loan_scheme'),
     path('loan_form/', views.loan_form, name='loan_form'),
     path('loan/', views.loan_list.as_view(), name='loan'),
     path('statement/<int:account_id>/', views.bank_statement, name='statement'),
