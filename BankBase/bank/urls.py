@@ -17,6 +17,7 @@ urlpatterns = [
     path('transaction_form/', views.transaction_form, name='transaction_form'),
     path('loan_form/', views.loan_form, name='loan_form'),
     path('loan/', views.loan_list.as_view(), name='loan'),
+    path('statement/<int:account_id>/', views.bank_statement, name='statement'),
 ]
 
 # image processing

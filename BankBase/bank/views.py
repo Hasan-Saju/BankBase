@@ -138,3 +138,13 @@ def transaction_form(request):
 
     dict={}
     return render(request,'transaction_form.html',context=dict)
+
+
+def bank_statement(request,account_id):
+    account_info_send=Transaction.objects.filter(sourceAccount=account_id)
+    account_info_receive=Transaction.objects.filter(destAccount=account_id)
+
+    diction={'send':account_info_send,'receive':account_info_receive}
+    return render(request,'statement.html',context=diction)
+    
+

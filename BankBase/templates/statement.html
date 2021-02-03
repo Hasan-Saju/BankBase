@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_block %}
+
+<h1>
+Bank Statement 
+</h1>
+<br>
+
+<h3>Debit</h3>
+<table class="table table-bordered">
+<tr>
+<th>From</th>
+<th>To</th>
+<th>Amount</th>
+<th>Timestamp</th>
+</tr>
+
+{% for transaction in send %}
+<tr>
+<td>{{transaction.sourceAccount}}</td>
+<td>{{transaction.destAccount}}</td>
+<td>{{transaction.amount}}</td>
+<td>{{transaction.timestamp}}</td>
+</tr>
+{% endfor %}
+</table>
+
+<br>
+
+<h3>Credit</h3>
+<table class="table table-bordered">
+<tr>
+<th>From</th>
+<th>To</th>
+<th>Amount</th>
+<th>Timestamp</th>
+</tr>
+
+{% for transaction in receive %}
+<tr>
+    <td>{{transaction.sourceAccount}}</td>
+    <td>{{transaction.destAccount}}</td>
+    <td>{{transaction.amount}}</td>
+    <td>{{transaction.timestamp}}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}

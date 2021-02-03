@@ -13,8 +13,8 @@
     
     	{% for transaction in transaction_list %}
         <tr> 
-        <td>{{transaction.sourceAccount}} </td>
-        <td> {{transaction.destAccount}} </td>
+        <td><a href="{%url 'bank:statement' account_id=transaction.sourceAccount %}">{{transaction.sourceAccount}}</a> </td>
+        <td><a href="{%url 'bank:statement' account_id=transaction.destAccount %}"> {{transaction.destAccount}} </a> </td>
         <td> {{transaction.amount}} </td>
         <td> {{transaction.timestamp}}</td>  
         </tr>
