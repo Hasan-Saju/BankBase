@@ -7,15 +7,15 @@ from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
 app_name = 'bank'
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('home/', views.index, name='index'),
     path('register/', views.register, name='register'),
-    path('login/', views.login_page, name='login'),
+    path('', views.login_page, name='login'),
     path('user_login/', views.user_login, name='user_login'),
     path('logout/', views.user_logout, name='logout'),
     path('new_account/', views.new_account, name='new_account'),
     path('transaction/', views.transaction_list.as_view(), name='transaction'),
     path('transaction_form/', views.transaction_form, name='transaction_form'),
-     path('loan_scheme/', views.loan_scheme, name='loan_scheme'),
+    path('loan_scheme/', views.loan_scheme, name='loan_scheme'),
     path('loan_form/', views.loan_form, name='loan_form'),
     path('loan/', views.loan_list.as_view(), name='loan'),
     path('statement/<int:account_id>/', views.bank_statement, name='statement'),

@@ -2,13 +2,55 @@
 {% load static %}
 {% block body_block %}
 
+<style>
+
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  background-color: #00BCD4;
+  color: white;
+}
+
+#customers tr:n-th child(even)  {background-color: #00FFFF;}
+
+#customers tr:hover {background-color: #FFFFF;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #287f8f;
+  color: white;
+}
+
+
+a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+
+
+</style>
+
 <h1>
 Bank Statement 
 </h1>
 <br>
 
 <h3>Debit</h3>
-<table class="table table-bordered">
+<table id="customers" class="table table-bordered">
 <tr>
 <th>From</th>
 <th>To</th>
@@ -31,7 +73,7 @@ Bank Statement
 <br>
 
 <h3>Credit</h3>
-<table class="table table-bordered">
+<table id="customers" class="table table-bordered">
 <tr>
 <th>From</th>
 <th>To</th>
