@@ -155,5 +155,10 @@ def bank_statement(request,account_id):
 def loan_scheme(request):
     dict={}
     return render(request,'loan_scheme.html',context=dict)
+
+
+def exchange_rate(request):
+    dict={}
+    return render(request,'exchange_rate.html',context=dict)
     
 
