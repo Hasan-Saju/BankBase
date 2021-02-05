@@ -1,6 +1,118 @@
 {% extends 'base.html' %}
 {% block body_block %}
-<h3>Exchange Rate</h3>
 
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  background-color: #00BCD4;
+  color: white;
+}
+
+#customers tr:n-th child(even)  {background-color: #00FFFF;}
+
+#customers tr:hover {background-color: #FFFFF;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #287f8f;
+  color: white;
+}
+</style>
+
+<h3>Exchange Rate</h3>
+<br>
+
+<pre>
+The Foreign-Exchange Rate, Forex Rate or Exchange Rate specifies the value of one currency in terms of other currency. 
+Each bank in Bangladesh has its own Bangladeshi Taka (BDT) Exchange Rate which updates daily. 
+To get updated with their Bangladeshi Taka (BDT) Exchange Rate one needs to visit each website one by one which is time consuming. 
+To save your time and efforts we are showing important currency rates from the respected banks website so that you can have a quick glance.
+</pre>
+<br>
+<br>
+
+<table id="customers">
+<tr>
+<th>Currency</th>
+<th>Rate</th>
+</tr>
+
+<tr>
+<td>US Dollar (USD)</td>
+<td>85.03</td>
+</tr>
+
+<tr>
+<td>Euro (EUR)</td>
+<td>92.65</td>
+</tr>
+
+<tr>
+<td>British Pound (GBP)</td>
+<td>103.46</td>
+</tr>
+
+<tr>
+<td>Australian Dollar (AUD)</td>
+<td>55.57</td>
+</tr>
+
+<tr>
+<td>Canadian Dollar (CAD)</td>
+<td>60.71</td>
+</tr>
+
+<tr>
+<td>Swiss Franc (CHF)</td>
+<td>87.55</td>
+</tr>
+
+<tr>
+<td>Japanese Yen (JPY)</td>
+<td>0.79</td>
+</tr>
+
+<tr>
+<td>Saudi Arabian Riyal (SAR)</td>
+<td>22.63</td>
+</tr>
+
+<tr>
+<td>Indian Rupee (INR)</td>
+<td>1.12</td>
+</tr>
+
+<tr>
+<td>Thai Baht (THB)</td>
+<td>2.67</td>
+</tr>
+
+<tr>
+<td>Qatari Rial (QAR)</td>
+<td>23.35</td>
+</tr>
+
+<tr>
+<td>Singapore Dollar (SGD)</td>
+<td>59.68</td>
+</tr>
+
+</table>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 {% endblock %}
