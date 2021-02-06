@@ -2,7 +2,7 @@
 {% block body_block %}
 <h3>Withdraw Cash</h3>
 
-<form action="{% url 'bank:transaction_form' %}" method="POST">
+<form action="{% url 'bank:withdraw' %}" method="POST">
     
     <label for="sourceAccount">Account Number:</label>
     <input type="Number" name="sourceAccount" required class="form-control">

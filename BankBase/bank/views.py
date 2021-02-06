@@ -133,11 +133,17 @@ def transaction_form(request):
         new_form=TransactionForm(request.POST)
 
         if new_form.is_valid():
-            new_form.save(commit=True)
-            return HttpResponse("Successfully created New Transaction")
+            sourceAcc=int(new_form.cleaned_data['sourceAccount'])
+            amount=int(new_form.cleaned_data['amount'])
 
+            if credit(sourceAcc)-amount >= 0 : 
+                new_form.save(commit=True)
+                return HttpResponse("Successfully created New Transaction")
+            else:
+                return HttpResponse("Don't have enough money to send")
     dict={}
     return render(request,'transaction_form.html',context=dict)
+
 
 def deposite_form(request):
     new_form=Deposite()
@@ -148,6 +154,7 @@ def deposite_form(request):
         if new_form.is_valid():
             new_form.save(commit=True)
             return HttpResponse("Successfully Deposited the Cash")
+
     dict={}
     return render(request,'deposite_form.html',context=dict)
 
@@ -158,8 +165,15 @@ def withdraw_form(request):
         new_form=Withdraw(request.POST)
 
         if new_form.is_valid():
-            new_form.save(commit=True)
-            return HttpResponse("Successfully Cash Withdrawn")
+
+            sourceAcc=int(new_form.data['sourceAccount'])
+            amount=int(new_form.data['amount'])
+
+            if credit(sourceAcc)-amount >= 0 : 
+                new_form.save(commit=True)
+                return HttpResponse("Witdrawal Successfull")
+            else:
+                return HttpResponse("Don't have enough money to withdraw")
 
     dict={}
     return render(request,'withdraw_form.html',context=dict)
@@ -188,3 +202,16 @@ def exchange_rate(request):
     return render(request,'exchange_rate.html',context=dict)
     
 
+
+# internal functions
+def debit(accountNumber):
+    account_info_send=Transaction.objects.filter(sourceAccount=accountNumber)
+    totalSend=0
+    totalSend=sum(account_info_send.values_list('amount',flat=True))
+    return int(totalSend)
+
+def credit(accountNumber):
+    account_info_receive=Transaction.objects.filter(destAccount=accountNumber)
+    totalReceive=0
+    totalReceive=sum(account_info_receive.values_list('amount',flat=True))
+    return int(totalReceive)

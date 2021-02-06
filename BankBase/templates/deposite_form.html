@@ -2,7 +2,7 @@
 {% block body_block %}
 <h3>Deposite Cash</h3>
 
-<form action="{% url 'bank:transaction_form' %}" method="POST">
+<form action="{% url 'bank:deposite' %}" method="POST">
     
     <label for="destAccount">Account Number:</label>
     <input type="Number" name="destAccount" required class="form-control">
