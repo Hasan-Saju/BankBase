@@ -21,7 +21,7 @@ class UserInfoForm(forms.ModelForm):
 class CreateNewAccount(forms.ModelForm):
     class Meta:
         model=Account
-        exclude=('id','currentBalance',)
+        exclude=('id','currentBalance')
 
 class LoanForm(forms.ModelForm):
     class Meta:

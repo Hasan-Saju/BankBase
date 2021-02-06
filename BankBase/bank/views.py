@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from bank.forms import UserForm, UserInfoForm,CreateNewAccount,LoanForm, TransactionForm,Deposite,Withdraw
-from bank.models import UserInfo,Account,Transaction,Loan
+from bank.models import UserInfo,Account,Transaction,Loan,Branch,AccountType
 from django.contrib.auth.models import User
 # module for authentication
 from django.contrib.auth import authenticate, login, logout
@@ -89,16 +89,54 @@ def register(request):
 
 def new_account(request):
     new_form=CreateNewAccount()
+    dict={'branch':BTuple(),'actype':optionAccType()}
+    # print(option())
+    BTuple()
     
     if request.method=='POST':
         new_form=CreateNewAccount(request.POST)
 
         if new_form.is_valid():
             new_form.save(commit=True)
-            return index(request)
+            return HttpResponse("Account Created")
+        else:
+            # return HttpResponse("Problem Occured")
+            return render(request, 'new_account.html', {'form': new_form})
     
-    dict={}
     return render(request,'new_account.html',context=dict)
+
+def optionBranch():
+    branch=Branch.objects.values('id')
+    # print(branch)
+
+    branchTuple=Branch.objects.values('id','location')
+    for option in branchTuple:
+        print(option['id'])
+        print(option['location'])
+
+    list=[]
+    for option in branch:
+        # print(option['id']) 
+        list.append(option['id'])
+    return list
+
+def BTuple():
+    branchTuple=Branch.objects.values('id','location')
+    list=[]
+    for option in branchTuple:
+        list.append((option['id'],option['location']))
+    return list
+        
+
+
+def optionAccType():
+    actype=AccountType.objects.values('id','type')
+    # print(branch)
+    list=[]
+    for option in actype:
+        # print(option['id']) 
+        list.append((option['id'],option['type']))
+    return list
 
 
 
@@ -115,7 +153,7 @@ class loan_list(ListView):
 
 def loan_form(request):
     new_form=LoanForm()
-
+    dict={'account_info':accountInfo()}
     if request.method=='POST':
         new_form=LoanForm(request.POST)
 
@@ -123,8 +161,15 @@ def loan_form(request):
             new_form.save(commit=True)
             return HttpResponse("Successfully created New Loan")
 
-    dict={}
+    
     return render(request,'loan_form.html',context=dict)
+
+def accountInfo():
+    info=Account.objects.values('id','account_name')
+    list=[]
+    for option in info:
+        list.append((option['id'],option['account_name']))
+    return list
 
 def transaction_form(request):
     new_form=TransactionForm()

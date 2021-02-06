@@ -4,8 +4,19 @@
 
 <form action="{% url 'bank:loan_form' %}" method="POST">
     <label for="accountNo">Account Number:</label>
-    <input type="Number" name="accountNo" placeholder="Enter Account Number.." required class="form-control">
+     <input type="Number" name="accountNo" placeholder="Enter Account Number.." required class="form-control">
     
+    
+    {% comment %} <select name="account_type">
+        {% for id,name in account_info  %}
+        <option value="{{id}}">{{name}}</option>
+        {% endfor %}
+</select>
+<br>
+<br> {% endcomment %}
+
+
+   
     <label for="loan_amount">Loan Amount:</label>
     <input type="Number" name="loan_amount" required class="form-control">
     

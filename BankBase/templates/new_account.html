@@ -2,19 +2,60 @@
 {% block body_block %}
 <h3>Create New Account</h3>
 
+{% comment %} 
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+ {% endcomment %}
+
+
 <form action="{% url 'bank:new_account' %}" method="POST">
     <label for="account_name">Account Name:</label>
     <input type="text" name="account_name" placeholder="Enter Account Name.." required class="form-control">
     
-    <label for="account_type">Account Type:</label>
-    <input type="text" name="account_type" required class="form-control">
-    <label for="branch_name">Branch Name:</label>
+    <br>
+       
+<label for="account_type">Account Type: </label>
+
+<select name="account_type">
+    {% for id,type in actype  %}
+        <option value="{{id}}">{{type}}</option>
+    {% endfor %}
+</select>
+<br>
+<br>
+
+    {% comment %} <label for="account_type">Account Type:</label>
+    <input type="text" name="account_type" required class="form-control"> {% endcomment %}
+    
+    {% comment %} <label for="branch_name">Branch Name:</label>
     <input type="text" name="branch_name"  required class="form-control">
+     {% endcomment %}
     
+<label for="branch_name">Branch Name: </label>
+
+<select name="branch_name">
+    {% for id,location in branch  %}
+        <option value="{{id}}">{{location}}</option>
+    {% endfor %}
+</select>
     
-    
+    <br>
+    <br>
     <label for="password">Password:</label>
     <input type="password" name="password" placeholder="Enter Password.." required class="form-control">
+   <br>
     {% csrf_token %}
     <br>
     <input type="submit" name="submit" value="Create New Account" style="color:white; background:#3F51B5">

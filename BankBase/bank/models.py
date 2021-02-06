@@ -40,7 +40,7 @@ class Account(models.Model):
     branch_name = models.ForeignKey(
         Branch, on_delete=models.CASCADE)
     password = models.CharField(max_length=15)
-    currentBalance = models.IntegerField()
+    currentBalance = models.IntegerField(null=True,default=True)
     # lastTransaction = models.DateTimeField()
 
     def __str__(self):
