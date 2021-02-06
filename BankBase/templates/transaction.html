@@ -54,9 +54,19 @@ a:visited {
         <tr>
     
     	{% for transaction in transaction_list %}
-        <tr> 
+        <tr>
+        {% if transaction.sourceAccount %} 
         <td><a href="{%url 'bank:statement' account_id=transaction.sourceAccount %}">{{transaction.sourceAccount}}</a> </td>
+        {% else %}
+        <td><p>---------------<p></td>
+        {% endif %}
+        
+        {% if transaction.destAccount %} 
         <td><a href="{%url 'bank:statement' account_id=transaction.destAccount %}"> {{transaction.destAccount}} </a> </td>
+        {% else %}
+        <td><p>---------------<p></td>
+        {% endif %}
+        
         <td> {{transaction.amount}} </td>
         <td> {{transaction.timestamp}}</td>  
         </tr>

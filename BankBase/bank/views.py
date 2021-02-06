@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from bank.forms import UserForm, UserInfoForm,CreateNewAccount,LoanForm, TransactionForm
+from bank.forms import UserForm, UserInfoForm,CreateNewAccount,LoanForm, TransactionForm,Deposite,Withdraw
 from bank.models import UserInfo,Account,Transaction,Loan
 from django.contrib.auth.models import User
 # module for authentication
@@ -138,6 +138,32 @@ def transaction_form(request):
 
     dict={}
     return render(request,'transaction_form.html',context=dict)
+
+def deposite_form(request):
+    new_form=Deposite()
+
+    if request.method =='POST':
+        new_form=Deposite(request.POST)
+
+        if new_form.is_valid():
+            new_form.save(commit=True)
+            return HttpResponse("Successfully Deposited the Cash")
+    dict={}
+    return render(request,'deposite_form.html',context=dict)
+
+def withdraw_form(request):
+    new_form=Withdraw()
+
+    if request.method =='POST':
+        new_form=Withdraw(request.POST)
+
+        if new_form.is_valid():
+            new_form.save(commit=True)
+            return HttpResponse("Successfully Cash Withdrawn")
+
+    dict={}
+    return render(request,'withdraw_form.html',context=dict)
+
 
 
 def bank_statement(request,account_id):

@@ -33,3 +33,13 @@ class TransactionForm(forms.ModelForm):
         model=Transaction
         fields='__all__'
 
+class Deposite(forms.ModelForm):
+    class Meta:
+        model=Transaction
+        exclude=('sourceAccount',)
+
+class Withdraw(forms.ModelForm):
+    class Meta:
+        model=Transaction
+        exclude=('destAccount',)
+

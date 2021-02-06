@@ -21,6 +21,8 @@ urlpatterns = [
     path('loan/', views.loan_list.as_view(), name='loan'),
     path('statement/<int:account_id>/', views.bank_statement, name='statement'),
     path('exchange_rate/', views.exchange_rate, name='exchange_rate'),
+    path('deposite/', views.deposite_form, name='deposite'),
+    path('withdraw/', views.withdraw_form, name='withdraw'),
 ]
 
 # image processing

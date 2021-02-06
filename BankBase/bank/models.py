@@ -59,8 +59,8 @@ class Loan(models.Model):
 
 
 class Transaction(models.Model):
-    sourceAccount = models.BigIntegerField()
-    destAccount = models.BigIntegerField()
+    sourceAccount = models.BigIntegerField(blank=True,null=True)
+    destAccount = models.BigIntegerField(blank=True,null=True)
     amount = models.IntegerField()
     timestamp = models.DateTimeField()
 
