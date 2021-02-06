@@ -36,6 +36,7 @@ class Account(models.Model):
     id = models.AutoField(primary_key=True)
     account_name = models.CharField(
         max_length=30, default="Blank. Set Account Name")
+    dob=models.DateField(blank=True,null=True)
     account_type = models.ForeignKey(AccountType, on_delete=models.CASCADE)
     branch_name = models.ForeignKey(
         Branch, on_delete=models.CASCADE)

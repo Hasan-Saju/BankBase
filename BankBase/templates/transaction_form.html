@@ -7,14 +7,14 @@
     <input type="Number" name="sourceAccount" placeholder="Enter Source Account Number.." required class="form-control">
     
     <label for="destAccount">Destination Account Number:</label>
-    <input type="Number" name="destAccount" required class="form-control">
+    <input type="Number" name="destAccount" placeholder="Enter Destination Account Number.." required class="form-control">
     
     <label for="amount">Amount:</label>
-    <input type="Number" name="amount"  required class="form-control">
+    <input type="Number" name="amount" placeholder="Amount.."  required class="form-control">
     
-    <label for="timestamp">Timestamp:</label>
+    {% comment %} <label for="timestamp">Timestamp:</label>
     <input type="datetime-local" name="timestamp" step="1"  required class="form-control">
-    
+     {% endcomment %}
     
     {% csrf_token %}
     <br>

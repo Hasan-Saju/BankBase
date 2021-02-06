@@ -31,15 +31,16 @@ class LoanForm(forms.ModelForm):
 class TransactionForm(forms.ModelForm):
     class Meta:
         model=Transaction
-        fields='__all__'
+        # fields='__all__'
+        exclude=('timestamp',)
 
 class Deposite(forms.ModelForm):
     class Meta:
         model=Transaction
-        exclude=('sourceAccount',)
+        exclude=('sourceAccount','timestamp',)
 
 class Withdraw(forms.ModelForm):
     class Meta:
         model=Transaction
-        exclude=('destAccount',)
+        exclude=('destAccount','timestamp',)
 
