@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+import sweetify
+from django.shortcuts import redirect
 
 from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -99,6 +101,10 @@ def new_account(request):
         if new_form.is_valid():
             new_form.save(commit=True)
             return HttpResponse("Account Created")
+            # sweetify.success(request, 'Account Created Successfully!')
+            # sweetify.sweetalert(request, 'Westworld is awesome', text='Really... if you have the chance - watch it!' persistent='I agree!')
+
+            # return redirect('/')
         else:
             # return HttpResponse("Problem Occured")
             return render(request, 'new_account.html', {'form': new_form})
@@ -179,9 +185,16 @@ def transaction_form(request):
 
         if new_form.is_valid():
             sourceAcc=int(new_form.cleaned_data['sourceAccount'])
+            destAcc=int(new_form.cleaned_data['destAccount'])
             amount=int(new_form.cleaned_data['amount'])
 
-            if credit(sourceAcc)-amount >= 0 : 
+            if credit(sourceAcc)-amount >= 0 :
+                balance=Account.objects.values_list('currentBalance', flat=True).get(pk=sourceAcc)
+                # print(balance)
+                Account.objects.filter(pk=sourceAcc).update(currentBalance=balance-amount) 
+                balance=Account.objects.values_list('currentBalance', flat=True).get(pk=destAcc)
+                Account.objects.filter(pk=destAcc).update(currentBalance=balance+amount) 
+
                 new_form.save(commit=True)
                 return HttpResponse("Successfully created New Transaction")
             else:
@@ -197,6 +210,12 @@ def deposite_form(request):
         new_form=Deposite(request.POST)
 
         if new_form.is_valid():
+            destAcc=int(new_form.cleaned_data['destAccount'])
+            amount=int(new_form.cleaned_data['amount'])
+
+            balance=Account.objects.values_list('currentBalance', flat=True).get(pk=destAcc)
+            Account.objects.filter(pk=destAcc).update(currentBalance=balance+amount) 
+            
             new_form.save(commit=True)
             return HttpResponse("Successfully Deposited the Cash")
 
@@ -214,7 +233,10 @@ def withdraw_form(request):
             sourceAcc=int(new_form.data['sourceAccount'])
             amount=int(new_form.data['amount'])
 
-            if credit(sourceAcc)-amount >= 0 : 
+            if credit(sourceAcc)-amount >= 0 :
+                balance=Account.objects.values_list('currentBalance', flat=True).get(pk=sourceAcc)
+                Account.objects.filter(pk=sourceAcc).update(currentBalance=balance-amount)  
+
                 new_form.save(commit=True)
                 return HttpResponse("Witdrawal Successfull")
             else:
