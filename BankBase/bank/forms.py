@@ -15,7 +15,7 @@ class UserForm(forms.ModelForm):
 class UserInfoForm(forms.ModelForm):
     class Meta():
         model = UserInfo
-        fields = ('facebook_id', 'profile_pic')
+        fields = ('LinkedIn_ID', 'Employee_Photo')
 
 
 class CreateNewAccount(forms.ModelForm):

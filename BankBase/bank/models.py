@@ -8,9 +8,9 @@ from django.contrib.auth.models import User
 class UserInfo(models.Model):
     # userinfo -one to one- user
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    facebook_id = models.URLField(blank=True)
+    LinkedIn_ID = models.URLField(blank=True)
     # profile_pics -directory- te save hobe
-    profile_pic = models.ImageField(upload_to='profile_pics', blank=True)
+    Employee_Photo = models.ImageField(upload_to='profile_pics', blank=True)
 
     def __str__(self):
         return self.user.username
