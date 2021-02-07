@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block body_block %}
+<h3>Account Details</h3>
+
+    {% comment %} vict={'id':id,'acname':acname,'actype':actype,'brID':brID} {% endcomment %}
+<br>
+<br>
+<b>Account Holder's Name:       </b><b>{{acname}}</b>
+<br><br>
+<b>Account type: </b><b>{{actype}}</b>
+<br><br>
+<b>Branch: </b><b>{{brID}}</b>
+<br>
+<br>
+<b>Account ID: </b><b>{{id}}</b>
+
+{% endblock %}

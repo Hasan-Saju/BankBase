@@ -100,7 +100,18 @@ def new_account(request):
 
         if new_form.is_valid():
             new_form.save(commit=True)
-            return HttpResponse("Account Created")
+            # ok
+            acname=new_form.cleaned_data['account_name']
+            actype=new_form.cleaned_data['account_type']
+            brID=new_form.cleaned_data['branch_name']
+            id=Account.objects.filter(account_name=acname,account_type_id=actype,branch_name_id=brID).values_list('id',flat=True)[0]
+            # print(id)
+            # print(acname)
+            # print(actype)
+            # print(brID)
+            vict={'id':id,'acname':acname,'actype':actype,'brID':brID}
+            return render(request,'account_details.html',context=vict)
+            # return HttpResponse("Account Created")
             # sweetify.success(request, 'Account Created Successfully!')
             # sweetify.sweetalert(request, 'Westworld is awesome', text='Really... if you have the chance - watch it!' persistent='I agree!')
 
@@ -110,6 +121,7 @@ def new_account(request):
             return render(request, 'new_account.html', {'form': new_form})
     
     return render(request,'new_account.html',context=dict)
+
 
 def optionBranch():
     branch=Branch.objects.values('id')
@@ -256,7 +268,9 @@ def bank_statement(request,account_id):
     totalReceive=0
     totalReceive=sum(account_info_receive.values_list('amount',flat=True))
 
-    diction={'send':account_info_send,'totalSend':totalSend,'receive':account_info_receive,'totalReceive':totalReceive}
+    balance=totalReceive-totalSend
+
+    diction={'send':account_info_send,'totalSend':totalSend,'receive':account_info_receive,'totalReceive':totalReceive,'balance':balance}
     return render(request,'statement.html',context=diction)
 
 def loan_scheme(request):
